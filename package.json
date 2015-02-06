@@ -1,0 +1,29 @@
+{
+  "name": "comp2widget",
+  "version": "1.0.0",
+  "description": "A CLI tool for easily extending titanium components as a widget.",
+  "bin": "comp2widget.js",
+  "keywords": [
+    "titanium",
+    "cli",
+    "appcelerator",
+    "extend",
+    "component",
+    "widget"
+  ],
+  "main": "comp2widget.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/RolandSchwan/comp2widget"
+  },
+  "author": "Roland Schwan",
+  "license": "Apache Public License v2",
+  "homepage": "https://github.com/RolandSchwan/comp2widget",
+  "dependencies": {
+    "colors": "^1.0.3",
+    "commander": "^2.6.0",
+    "handlebars": "^2.0.0",
+    "progress": "^1.1.8",
+    "underscore": "^1.7.0"
+  }
+}

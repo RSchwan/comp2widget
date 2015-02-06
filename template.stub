@@ -1,0 +1,53 @@
+var properties = [
+{{#properties}}
+    '{{name}}',
+{{/properties}}
+];
+
+var methods = [
+{{#methods}}
+    '{{name}}',
+{{/methods}}
+];
+
+function passingEvents(ex, comp)
+{
+    // workaround for android
+    ex.on = function(name, cb) { return comp.addEventListener(name, cb); };
+    ex.off = function(name, cb) { return comp.removeEventListener(name, cb); };
+    ex._hasListenersForEventType = function(name, flag) {
+        return comp._hasListenersForEventType(name, flag);
+    };
+    ex.bind = comp.addEventListener;
+    ex.unbind = comp.removeEventListener;
+    ex.addEventListener = comp.addEventListener;
+    ex.removeEventListener = comp.removeEventListener;
+    ex.trigger = comp.fireEvent;
+    ex.fireEvent = comp.fireEvent;
+}
+
+function passingProperties(args, comp)
+{
+    for (var i = 0; i < properties.length; i++)
+    {
+        if (args[properties[i]] !== undefined)
+        {
+            comp[properties[i]] = args[properties[i]];
+        }
+    }
+}
+
+function passingMethods(ex, comp)
+{
+    for (var i = 0; i < methods.length; i++)
+    {
+        ex[methods[i]] = comp[methods[i]];
+    }
+}
+
+exports.extend = function(ex, args, comp)
+{
+    passingEvents(ex, comp);
+    passingProperties(args, comp);
+    passingMethods(ex, comp);
+};

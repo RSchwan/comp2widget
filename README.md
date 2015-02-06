@@ -18,7 +18,7 @@ A CLI tool for easily extending [titanium](http://appcelerator.com/titanium) com
     
 4. Add the component you want to extend to the `index.xml` file and give it an id:
 
-    ```
+    ```xml
     <Alloy>
     	<Label id="myComponent"></Label>
     </Alloy>
@@ -38,14 +38,14 @@ A CLI tool for easily extending [titanium](http://appcelerator.com/titanium) com
 
 5. Add following to the top of the `index.js` file:
 
-    ```
+    ```javascript
     var args = arguments[0] || {};
     require(WPATH('Titanium.UI.Label2widget')).extend(exports, args, $.myComponent);
     ```
 
 6.  Now you can override and extend the component as you wish:
 
-    ```
+    ```javascript
     $.myComponent.text = 'Original text: ' + args.text || '';
     exports.setText = function (text)
     {
